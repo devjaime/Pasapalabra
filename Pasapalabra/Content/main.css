@@ -1,0 +1,119 @@
+﻿html, body {
+    background: white;
+    font-family: 'Varela Round', sans-serif;
+}
+
+.body-content {
+    min-height: 100%;
+    height: auto;
+    margin: 0 auto -100px;
+}
+
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/* ********* HEADER ********* */
+
+header {
+    margin-bottom: 40px;
+    padding: 30px;
+    background: #7edfff;
+}
+
+    header .title {
+        text-transform: uppercase;
+        text-align: center;
+        color: #100202;
+        margin: 0;
+        padding: 0;
+        font-size: 35px;
+        font-weight:bold;
+    }
+
+/* ********* LETTERS ********* */
+
+.lettersDiv span {
+    display: inline-block;
+    background: #56a5e9;
+    font-size: 22px;
+    text-align: center;
+    color: #fff;
+    width: 80px;
+    height: 80px;
+    line-height: 75px;
+    margin: 10px 2px;
+    border: 2px solid #fff;
+}
+
+    .lettersDiv span.correctLetter {
+        background: #169016;
+    }
+
+    .lettersDiv span.incorrectLetter {
+        background: #ff2e2e;
+    }
+
+/* ********* BUTTONS ********* */
+
+.btn {
+    cursor: pointer;
+}
+
+.startGameBtn {
+    text-align: center;
+    margin: 60px auto;
+    background: #bf4bb9;
+    border: 1px solid transparent;
+    height: 70px;
+    line-height: 5px;
+    padding: 45px;
+    font-size: 30px;
+}
+
+    .startGameBtn:hover, .startGameBtn:focus, .startGameBtn:link, .startGameBtn:active, .startGameBtn:active:focus {
+        background: #ae46a9;
+    }
+
+.playAgainBtn {
+    margin: 20px;
+    background: #bf4bb9;
+}
+    .playAgainBtn:hover, .playAgainBtn:focus, .startplayAgainBtnGameBtn:link, .playAgainBtn:active, .playAgainBtn:active:focus {
+        background: #ae46a9;
+    }
+
+/* ********* GAME ********* */
+
+.gameRunning, .finalGameScore{
+    margin-top: 25px;
+}
+
+.inputWord {
+    margin: 25px auto;
+    padding:20px;
+    font-size:16px;
+}
+
+/* ********* FOOTER ********* */
+
+.footer {
+    height: 100px;
+    margin-top: 280px;
+    text-align: center;
+}
+
+@media (max-width: 767px) {
+    .footer {
+        margin-left: -20px;
+        margin-right: -20px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
