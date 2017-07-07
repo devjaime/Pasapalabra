@@ -1,6 +1,4 @@
-﻿using Pasapalabra.Models;
-using System.Linq;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace Pasapalabra.Controllers
 {
@@ -10,6 +8,5 @@ namespace Pasapalabra.Controllers
         {
             return View();
         }
-
     }
 }

@@ -55,6 +55,9 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -127,9 +130,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.ApplicationInsights">
       <HintPath>..\packages\Microsoft.ApplicationInsights.2.2.0\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
     </Reference>
@@ -157,7 +157,6 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\Api\QuestionsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\QuestionsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -170,6 +169,10 @@
     <Compile Include="Migrations\201707052240193_AddLetterToQuestion.cs" />
     <Compile Include="Migrations\201707052240193_AddLetterToQuestion.Designer.cs">
       <DependentUpon>201707052240193_AddLetterToQuestion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707062125470_AddIsCorrectToQuestions.cs" />
+    <Compile Include="Migrations\201707062125470_AddIsCorrectToQuestions.Designer.cs">
+      <DependentUpon>201707062125470_AddIsCorrectToQuestions.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\PasapalabraContext.cs" />
@@ -237,6 +240,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201707052240193_AddLetterToQuestion.resx">
       <DependentUpon>201707052240193_AddLetterToQuestion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707062125470_AddIsCorrectToQuestions.resx">
+      <DependentUpon>201707062125470_AddIsCorrectToQuestions.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

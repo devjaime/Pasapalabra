@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Pasapalabra.Models.Question>
+﻿@model Pasapalabra.Models.Question
 
 @{
     ViewBag.Title = "Pasapalabra";
@@ -79,52 +79,32 @@
             var gameOn = false;
             var score = 0;
             var letterPosition = -1;
-
-            // Constants
-            questions = getQuestions();
-            const questionsLength = questions.length;
+            var questions = [];
             const asciiOfA = 65;
 
-            // Get questions
+            // Function to get questions from database
             function getQuestions() {
-                var questions = [
-                    new question("A", "In the Disney film, what is the name of Aladdin's monkey partner?", "Abu"),
-                    new question("B", "Where in the Americas will you hear the Portuguese language?", "Brazil"),
-                    new question("C", "Native to South America, what is the largest rodent in the world?", "Capybara"),
-                    new question("D", "The Latin word for dragon, what is the first name of Hogwarts student Malfoy?", "Draco"),
-                    new question("E", "What TV series stars Jonny Lee Miller as Sherlock Holmes?", "Elementary"),
-                    new question("F", "Due to their food intake, which wading bird is famous for its pink plumage?", "Flamingo"),
-                    new question("G", "What is Scotland's largest city?", "Glasgow"),
-                    new question("H", "On Twitter, what name is given to the '#' symbol?", "Hashtag"),
-                    new question("I", "What surname is shared by father and son singers Julio and Enrique?", "Iglesias"),
-                    new question("J", "What name is given to a young kangaroo?", "Joey"),
-                    new question("K", "Which animal feeds predominantly on eucalyptus leaves?", "Koala"),
-                    new question("L", "What U.S. TV show followed the survivors of the Oceanic Flight 815 plane crash?", "Lost"),
-                    new question("M", "What is the name of the young boy raised by wolves in Kipling's 'The Jungle Book'?", "Mowgli"),
-                    new question("N", "What word describes an animal that is active during the night?", "Nocturnal"),
-                    new question("O", "Who was the supreme god and creator in Norse mythology?", "Odin"),
-                    new question("P", "Which electric-type Pokémon is Ash's companion in the original anime series?", "Pikachu"),
-                    new question("Q", "What is the capital of Ecuador?", "Quito"),
-                    new question("R", "In the Christmas song, what is the name of the 'red-nosed reindeer'?", "Rudolph"),
-                    new question("S", "The name of a famous Disney character, what is the Swahili word for 'lion'?", "Simba"),
-                    new question("T", "Who was the Norse god of thunder?", "Thor"),
-                    new question("U", "What legendary animal resembles a horse with a single horn growing from its forehead?", "Unicorn"),
-                    new question("V", "Shakespeare's 'Romeo and Juliet' is set in what Italian city?", "Verona"),
-                    new question("W", "What word for a website that can be edited by anyone comes from the Hawaiian word for 'quick'?", "Wiki"),
-                    new question("X", "What word is used for an intense dislike or fear of people from other countries?", "Xenophobia"),
-                    new question("Y", "'Y' is the chemical symbol for what element?", "Yttrium"),
-                    new question("Z", "Which princess does Link attempt to rescue in a series of video games?", "Zelda")
-                ];
-                return questions;
+                return $.ajax({
+                    url: '/Questions/GetQuestions',
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function (data) {
+                        return data;
+                    },
+                    error: function (error) {
+                        alert("An unexpected error occurred. Please reload the page.");
+                    }
+                });
             }
 
-            // Question initializer
-            function question(letter, description, rightWord) {
-                this.letter = letter;
-                this.description = description;
-                this.rightWord = rightWord;
-                this.IsCorrect = null;
-            }
+            // Initializes questions variable with database data when GetQuestions() is called
+            $.when(getQuestions()).then(function (data) {
+                if (data != null) {
+                    questions = data;
+                } else {
+                    alert("An unexpected error occurred. Please reload the page.");
+                }
+            });
 
             // Keyboard
             $(document).keypress(function (e) {
@@ -162,6 +142,7 @@
 
             // Start Game
             function play() {
+                getQuestions();
                 gameOn = true;
                 startPage = false;
                 $(".startGameBtnDiv").remove();
@@ -192,8 +173,8 @@
             // Returns array position of current question
             function getLetterPosition(question) {
                 var pos;
-                for (var i = 0; i < questionsLength; i++) {
-                    if (questions[i].letter === question.letter) {
+                for (var i = 0; i < questions.length; i++) {
+                    if (questions[i].Letter === question.Letter) {
                         pos = i;
                         break;
                     }
@@ -203,8 +184,8 @@
 
             // Show current question
             function showQuestion(question) {
-                $("#letter").html(question.letter);
-                $("#description").html(question.description);
+                $("#letter").html(question.Letter);
+                $("#description").html(question.Description);
                 $("#inputWord").val('');
                 $("#inputWord").focus();
             }
@@ -224,15 +205,15 @@
 
                 // Get span of answered question's letter
                 var letter = "";
-                for (var i = asciiOfA; i < questionsLength + asciiOfA; i++) {
-                    if (String.fromCharCode(i) == answeredQuestion.letter) {
+                for (var i = asciiOfA; i < questions.length + asciiOfA; i++) {
+                    if (String.fromCharCode(i) == answeredQuestion.Letter) {
                         letter = String.fromCharCode(i);
                     }
                 }
                 var spanOfLetter = $('#' + letter);
 
                 // If player's guessed word is correct, make span green and increase score
-                if (inputWord === answeredQuestion.rightWord.toLowerCase()) {
+                if (inputWord === answeredQuestion.RightAnswer.toLowerCase()) {
                     answeredQuestion.IsCorrect = true;
                     spanOfLetter.addClass('correctLetter');
                     score++;

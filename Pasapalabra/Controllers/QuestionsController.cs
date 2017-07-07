@@ -1,6 +1,4 @@
 ﻿using Pasapalabra.Models;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -15,24 +13,17 @@ namespace Pasapalabra.Controllers
             return View();
         }
 
-        public IList<Question> GetQuestions()
-        { 
-            var questions = db.Questions.ToList();
-            return questions;
-        }
-
-        public Question GetQuestionByLetter(string letter)
+        // Returns array of questions from database as a Json object
+        public JsonResult GetQuestions()
         {
-            var questions = db.Questions.ToList();
+            var questions = db.Questions.ToArray();
 
-            var question = questions.SingleOrDefault(q => q.Letter == letter);
-
-            if(question == null)
+            if(questions == null)
             {
                 return null;
             }
 
-            return question;
+            return Json(questions, JsonRequestBehavior.AllowGet);
         }
     }
 }

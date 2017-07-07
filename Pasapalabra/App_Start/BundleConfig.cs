@@ -12,8 +12,7 @@ namespace Pasapalabra
             bundles.Add(new ScriptBundle("~/bundles/library").Include(
                         "~/Scripts/jquery-{version}.js",
                         "~/Scripts/respond.js",
-                        "~/Scripts/bootstrap.js"
-                        ));
+                        "~/Scripts/bootstrap.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));

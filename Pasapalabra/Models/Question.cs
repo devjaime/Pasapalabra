@@ -17,5 +17,7 @@ namespace Pasapalabra.Models
         [Required]
         [StringLength(30)]
         public string RightAnswer { get; set; }
+
+        public bool? IsCorrect { get; set; }
     }
 }
