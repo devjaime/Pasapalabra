@@ -1,6 +1,4 @@
 # Pasapalabra
-JavaScript/ASP.NET MVC version of Pasapalabra Spanish game.
+Web app of Spanish TV game show 'Pasapalabra' using C#, ASP.NET MVC with Entity Framework and JavaScript/Jquery.
 
 Its wikipedia page: https://en.wikipedia.org/wiki/Pasapalabra
-
-Demo at https://evancugat.github.io/Pasapalabra/
