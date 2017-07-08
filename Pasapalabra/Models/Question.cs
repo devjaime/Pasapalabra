@@ -11,6 +11,10 @@ namespace Pasapalabra.Models
         public string Letter { get; set; }
 
         [Required]
+        [StringLength(50)]
+        public string ContainsOrStartsWithLetter { get; set; }
+
+        [Required]
         [StringLength(255)]
         public string Description { get; set; }
 

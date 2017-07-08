@@ -62,8 +62,8 @@
     <div class="row">
         <div class="col-lg-12 text-center">
             <h2>You guessed correctly:</h2>
-            <h3><span id="score">0</span> out of 26 questions</h3>
-            <button id="playAgainBtn" class="btn btn-primary btn-lg playAgainBtn">Play again</button>
+            <h3><span id="score">0</span> out of 26 words.</h3>
+            <button id="backToMainPageBtn" class="btn btn-primary btn-lg backToMainPageBtn">Back to main page</button>
         </div>
     </div>
 </div>
@@ -81,6 +81,7 @@
             var letterPosition = -1;
             var questions = [];
             const asciiOfA = 65;
+            var timer = 0;
 
             // Function to get questions from database
             function getQuestions() {
@@ -106,7 +107,7 @@
                 }
             });
 
-            // Keyboard
+            // Keyboard accessibility
             $(document).keypress(function (e) {
                 if (e.which == 13) {
                     if (gameOn) {
@@ -115,7 +116,7 @@
                         if (startPage) {
                             play();
                         } else {
-                            newGame();
+                            backToMainPage();
                         }
                     }
                 }
@@ -136,13 +137,14 @@
             $("#pasapalabraBtn").click(function () {
                 pasapalabra();
             });
-            $("#playAgainBtn").click(function () {
-                newGame();
+            $("#backToMainPageBtn").click(function () {
+                backToMainPage();
             });
 
             // Start Game
             function play() {
                 getQuestions();
+                startTimer();
                 gameOn = true;
                 startPage = false;
                 $(".startGameBtnDiv").remove();
@@ -184,7 +186,7 @@
 
             // Show current question
             function showQuestion(question) {
-                $("#letter").html(question.Letter);
+                $("#letter").html(question.ContainsOrStartsWithLetter + " " + question.Letter);
                 $("#description").html(question.Description);
                 $("#inputWord").val('');
                 $("#inputWord").focus();
@@ -243,14 +245,58 @@
             // Display score result when game is over
             function gameOver() {
                 gameOn = false;
+                stopTimer();
                 $('#score').html(score);
                 $('#game').addClass('hidden');
                 $('#finalGameScore').removeClass('hidden');
             }
 
-            // Reload page if new game
-            function newGame() {
+            // Reload page if back to main page
+            function backToMainPage() {
                 window.location.reload();
+            }
+
+            // Starts countdown
+            function startTimer() {
+
+                // Timer at 3 minutes
+                var minutes = 3;
+                var seconds = 0;
+                var timeLimit = minutes * 60 + seconds;
+
+                timer = setInterval(function () {
+
+                    // Countdown
+                    timeLimit--;
+
+                    // If timer reaches 0, game over
+                    if (timeLimit <= 0) {
+                        gameOver();
+                    }
+
+                    // Minutes display
+                    minutes = Math.floor(timeLimit / 60);
+                    if (minutes < 10) {
+                        minutes = "0" + minutes;
+                    }
+
+                    // Seconds display
+                    seconds = timeLimit % 60;
+                    if (seconds <= 30) {
+                        $("#timer").addClass("redTimer");
+                    }
+                    if (seconds < 10) {
+                        seconds = "0" + seconds;
+                    }
+
+                    // Display timer on the browser
+                    $("#timer").html(minutes + ":" + seconds);
+                }, 1000);
+            }
+
+            // Stops countdown
+            function stopTimer() {
+                clearInterval(timer);
             }
         });
 

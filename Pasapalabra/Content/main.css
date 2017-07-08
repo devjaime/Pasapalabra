@@ -1,6 +1,7 @@
 ﻿html, body {
-    background: white;
+    background: #ffffff;
     font-family: 'Varela Round', sans-serif;
+    color: #100202;
 }
 
 .body-content {
@@ -19,7 +20,7 @@ textarea {
     max-width: 280px;
 }
 
-/* ********* HEADER ********* */
+/* --------- HEADER --------- */
 
 header {
     margin-bottom: 40px;
@@ -34,15 +35,16 @@ header {
         margin: 0;
         padding: 0;
         font-size: 35px;
-        font-weight:bold;
+        font-weight: bold;
     }
 
-/* ********* LETTERS ********* */
+/* --------- LETTERS --------- */
 
 .lettersDiv span {
     display: inline-block;
     background: #56a5e9;
     font-size: 22px;
+    font-weight: 400;
     text-align: center;
     color: #fff;
     width: 80px;
@@ -50,6 +52,7 @@ header {
     line-height: 75px;
     margin: 10px 2px;
     border: 2px solid #fff;
+    border-radius: 50%;
 }
 
     .lettersDiv span.correctLetter {
@@ -60,7 +63,7 @@ header {
         background: #ff2e2e;
     }
 
-/* ********* BUTTONS ********* */
+/* --------- BUTTONS --------- */
 
 .btn {
     cursor: pointer;
@@ -81,31 +84,43 @@ header {
         background: #ae46a9;
     }
 
-.playAgainBtn {
+.backToMainPageBtn {
     margin: 20px;
     background: #bf4bb9;
 }
-    .playAgainBtn:hover, .playAgainBtn:focus, .startplayAgainBtnGameBtn:link, .playAgainBtn:active, .playAgainBtn:active:focus {
+
+    .backToMainPageBtn:hover, .backToMainPageBtn:focus, .backToMainPageBtn:link, .backToMainPageBtn:active, .backToMainPageBtn:active:focus {
         background: #ae46a9;
     }
 
-/* ********* GAME ********* */
+/* --------- GAME --------- */
 
-.gameRunning, .finalGameScore{
+.gameRunning, .finalGameScore {
     margin-top: 25px;
 }
 
 .inputWord {
     margin: 25px auto;
-    padding:20px;
-    font-size:16px;
+    padding: 20px;
+    font-size: 16px;
 }
 
-/* ********* FOOTER ********* */
+/* --------- TIMER --------- */
+
+.timer {
+    font-size: 28px;
+    margin-top: 20px;
+}
+
+.redTimer {
+    color: #ff2e2e;
+}
+
+/* --------- FOOTER --------- */
 
 .footer {
     height: 100px;
-    margin-top: 280px;
+    margin-top: 250px;
     text-align: center;
 }
 
